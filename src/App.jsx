@@ -52,6 +52,7 @@ function App() {
             <input
               type="text"
               onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             />
             <button onClick={handleSubmit}>Submit</button>
           </>
