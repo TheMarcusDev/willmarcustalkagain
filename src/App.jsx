@@ -40,6 +40,8 @@ function App() {
     "The answer is right in front of you. Maybe you should be hexed too.",
   ];
 
+  // trigger new commit
+
   return (
     <div className="App">
       <div className="centered-container">
