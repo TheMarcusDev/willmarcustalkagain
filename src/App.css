@@ -1,0 +1,42 @@
+.App {
+  display: flex;
+  text-align: center;
+  background-color: black;
+  color: chartreuse;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Fixedsys", "Courier New", monospace;
+}
+
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 20vh;
+}
+
+input {
+  background-color: black;
+  color: chartreuse;
+  border: 1px solid chartreuse;
+  padding: 10px;
+  font-family: "Fixedsys", "Courier New", monospace;
+}
+
+button {
+  background-color: black;
+  color: chartreuse;
+  border: 1px solid chartreuse;
+  padding: 10px 20px;
+  font-family: "Fixedsys", "Courier New", monospace;
+  cursor: pointer;
+}
+
+secret {
+  color: black;
+}
