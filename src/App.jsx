@@ -64,7 +64,7 @@ function App() {
           onKeyDown={(e) =>
             e.key === "Enter" && handleStageJump(inputJumpValue)
           }
-          placeholder="Insert last know answer"
+          placeholder="Insert last known answer"
         />
         <button onClick={() => handleStageJump(inputJumpValue)}>
           Jump to Stage
