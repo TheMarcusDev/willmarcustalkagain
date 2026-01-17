@@ -6,6 +6,7 @@ import Countdown from "react-countdown";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
+  const [inputJumpValue, setInputJumpValue] = useState("");
   const [stage, setStage] = useState(0);
 
   const handleSubmit = () => {
@@ -19,6 +20,19 @@ function App() {
     }
     setInputValue("");
     document.querySelector("input").value = "";
+  };
+
+  const handleStageJump = (Secret) => {
+    const index = Secrets.findIndex(
+      (s) =>
+        s.toLowerCase().replaceAll(" ", "") ===
+        Secret.toLowerCase().replaceAll(" ", "")
+    );
+    if (index !== -1) {
+      setStage(index + 1);
+    } else {
+      alert("Not a valid stage.");
+    }
   };
 
   const Prompts = [
@@ -40,25 +54,39 @@ function App() {
     "The answer is right in front of you. Maybe you should be hexed too.",
   ];
 
-  // trigger new commit
-
   return (
     <div className="App">
-      <div className="centered-container">
-        <h2>{Prompts[stage]}</h2>
-        {stage == 0 && <secret>{Secrets[stage]}</secret>}
-        {stage == 1 && <audio src={morse} autoPlay />}
-        {stage == 3 && <Countdown date={"2026-01-17T20:00:00Z"} />}
-        {stage < 3 && (
-          <>
-            <input
-              type="text"
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-            />
-            <button onClick={handleSubmit}>Submit</button>
-          </>
-        )}
+      <div className="top">
+        <p>Stage {stage + 1} of ?</p>
+        <input
+          type="text"
+          onChange={(e) => setInputJumpValue(e.target.value)}
+          onKeyDown={(e) =>
+            e.key === "Enter" && handleStageJump(inputJumpValue)
+          }
+          placeholder="Insert last know answer"
+        />
+        <button onClick={() => handleStageJump(inputJumpValue)}>
+          Jump to Stage
+        </button>
+      </div>
+      <div className="center">
+        <div className="centered-container">
+          <h2>{Prompts[stage]}</h2>
+          {stage == 0 && <secret>{Secrets[stage]}</secret>}
+          {stage == 1 && <audio src={morse} autoPlay />}
+          {stage == 3 && <Countdown date={"2026-01-17T20:00:00Z"} />}
+          {stage < 3 && (
+            <>
+              <input
+                type="text"
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+              />
+              <button onClick={handleSubmit}>Submit</button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
