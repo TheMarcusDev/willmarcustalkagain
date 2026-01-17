@@ -11,11 +11,81 @@
 
 .top {
   width: 100%;
+  height: 10vh;
   padding: 20px;
   z-index: 1;
   input {
     width: 15%;
   }
+}
+
+.top-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 50%;
+  z-index: 2;
+  text-align: center;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .disguised-input {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  .slider {
+    width: 50%;
+    accent-color: chartreuse;
+    background-color: black;
+  }
+}
+
+/* For Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Removes any potential margin issues in older Chrome versions */
+}
+
+/* For Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Standard property for modern browsers */
+input[type="number"] {
+  appearance: none;
+}
+
+.solved-modal {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-around;
+  top: 50%;
+  left: 50%;
+  height: 20vh;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  color: chartreuse;
+  border: 2px solid chartreuse;
+  padding: 10px 20px;
+  font-family: "Fixedsys", "Courier New", monospace;
+  z-index: 3;
 }
 
 .center {
@@ -33,6 +103,7 @@
   justify-content: space-around;
   align-items: center;
   height: 25vh;
+  z-index: 1;
 }
 
 input {
@@ -56,10 +127,106 @@ secret {
   color: black;
 }
 
+.htg-lives {
+  max-width: 100%;
+  height: 50vh;
+  position: absolute;
+  animation: jump-around 10s linear infinite;
+}
+
+.final-message {
+  position: absolute;
+  text-align: center;
+  color: limegreen;
+  animation: blink-grow-hue-crazyness 1s step-start 0s infinite;
+}
+
+@keyframes blink-grow-hue-crazyness {
+  0% {
+    opacity: 1;
+    font-size: 2rem;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    opacity: 0.5;
+    font-size: 3rem;
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    opacity: 1;
+    font-size: 4rem;
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    opacity: 0.5;
+    font-size: 3rem;
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    opacity: 1;
+    font-size: 2rem;
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes jump-around {
+  0% {
+    top: 5%;
+    left: 5%;
+  }
+  15% {
+    top: 50%;
+    left: 50%;
+  }
+  30% {
+    top: 20%;
+    left: 0;
+  }
+  45% {
+    top: 5%;
+    left: 60%;
+  }
+  60% {
+    top: 30%;
+    left: 10%;
+  }
+  75% {
+    top: 50%;
+    left: 50%;
+  }
+  100% {
+    top: 5%;
+    left: 5%;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .top {
+    font-size: 0.7rem;
+    .top-horizontal {
+      flex-direction: column;
+      align-items: flex-start;
+    }
     input {
       width: 50%;
     }
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  .map-container {
+    width: 90%;
+    height: 40%;
+  }
+  .solved-modal {
+    width: 80%;
+    height: auto;
+    font-size: 0.8rem;
+  }
+  .htg-lives {
+    height: 30vh;
+  }
+  .final-message {
+    transform: scale(0.8);
   }
 }
