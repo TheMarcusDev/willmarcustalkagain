@@ -25,6 +25,7 @@ dist-ssr
 
 # Secrets
 secretslocal.txt
+.env
 .env.local
 enc_key_base64.txt
 
